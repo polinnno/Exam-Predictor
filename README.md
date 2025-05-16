@@ -34,9 +34,3 @@ The model was trained on synthetically generated data. Data was split into train
 
 ![Histogram: Distribution of Prediction Errors](model/results/error_distribution.png)
 
-
----
-
-**Author:** Polina Korepanova  
-**Index Number:** 5859  
-**Course:** CS324 – Scripting Languages
