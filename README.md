@@ -1,13 +1,7 @@
 # Exam Outcome Predictor
 
-<a href="https://exam-predictor-z4cw.onrender.com" target="_blank" style="text-decoration: none;">
-  <div style="display: inline-flex; align-items: center; background-color: #28a745; color: white; padding: 10px 16px; border-radius: 8px; font-weight: bold; font-family: sans-serif;">
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" style="margin-right: 8px;" viewBox="0 0 16 16">
-      <path fill="currentColor" d="M4 2.01c0-.848.98-1.32 1.64-.79l7.48 5.99c.506.405.506 1.17 0 1.58l-7.48 5.99A1.01 1.01 0 0 1 4 13.99v-12z"/>
-    </svg>
-    Play
-  </div>
-</a>
+**Live version:**  
+[![▶ LAUNCH APP](https://img.shields.io/badge/▶%20LAUNCH%20APP-026e00?style=for-the-badge)](https://exam-predictor-z4cw.onrender.com)
 
 This project is a web application designed to predict how well a student might perform on an exam based on personal study habits, mental health indicators, and subjective experiences. Built using Python and Flask, it shows a practical use-case of machine learning models in everyday tools.
 ![index](model/results/exam.png)
