@@ -7,7 +7,7 @@ from sklearn.metrics import mean_absolute_error, r2_score
 import joblib
 import os
 
-data_path = os.path.join('..', 'assets', 'exam_data5.csv')
+data_path = os.path.join('..', 'assets', 'exam_data6.csv')
 df = pd.read_csv(data_path)
 
 X = df[[
@@ -36,7 +36,7 @@ with open("results/metrics.txt", "w") as f:
     f.write(f"R² Score: {r2:.2f}\n")
 
 
-model_path = os.path.join('predictor5.pkl')
+model_path = os.path.join('predictor6.pkl')
 joblib.dump(model, model_path)
 
 print("Saved at:", model_path)

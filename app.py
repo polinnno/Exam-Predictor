@@ -3,7 +3,7 @@ import joblib
 import numpy as np
 
 app = Flask(__name__)
-model = joblib.load("model/predictor5.pkl")
+model = joblib.load("model/predictor6.pkl")
 
 def safe_int(value, default=0):
     try:
@@ -56,6 +56,7 @@ def predict():
 
         input_data = np.array([[sleep, anxiety, burnout, attended, homework, hours_studied, complexity]])
         prediction = model.predict(input_data)[0]
+        prediction = min(max(prediction, 0), 100)
 
         return render_template("index.html", prediction_text=f"Predicted exam score: {prediction:.2f}%")
 
