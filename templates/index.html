@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exam Outcome Predictor</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>Exam Outcome Predictor</h1>
+    <form action="/predict" method="post">
+        <br>
+        {% if form_error %}
+            <p class="error-msg">{{ form_error }}</p>
+        {% endif %}
+        <br>
+        <label for="sleep_hours">Hours of sleep (before the exam): <span id="sleep_display">5</span>h</label><br>
+        <input type="range" id="sleep_hours" name="sleep_hours" min="0" max="10" value="5" oninput="sleep_display.innerText = this.value"><br><br>
+
+        <label for="anxiety_level">Anxiety level: <span id="anxiety_display">5</span></label><br>
+        <input type="range" id="anxiety_level" name="anxiety_level" min="1" max="10" value="5" oninput="anxiety_display.innerText = this.value"><br><br>
+
+        <label><input type="checkbox" name="burnout_feeling" value="1"> I feel burned out</label><br><br>
+
+        <fieldset>
+            <legend>Attendance</legend>
+
+            <div id="lecture_raw" class="field-row">
+                <label for="attended_count">Attended</label>
+                <input type="number" name="attended_count" min="0" id="attended_count">
+                <label for="attended_total">out of</label>
+                <input type="number" name="attended_total" min="1" id="attended_total"> classes.<br>
+                <small>* Enter how many lectures/classes you actually attended or plan to attend before the exam.</small>
+            </div>
+
+            <div id="lecture_percent" style="display: none">
+                <label for="attended_percent">Attendance (%)</label>
+                <input type="number" name="attended_percent" min="0" max="100">
+            </div>
+            <label class="smaller-option"><input type="checkbox" id="attended_toggle" onchange="toggleLectureMode()"> Enter attendance in percent instead</label>
+        </fieldset>
+
+        <fieldset>
+            <legend>Homework Completion</legend>
+
+            <div id="hw_raw" class="field-row">
+                <label for="hw_done">Completed</label>
+                <input type="number" name="hw_done" min="0" id="hw_done">
+                <label for="hw_total">out of</label>
+                <input type="number" name="hw_total" min="1" id="hw_total">
+                <label for="hw_total">assignments in total.</label><br>
+                <small>* Include all homework you've already done or plan to finish before the exam.</small>
+            </div>
+
+            <div id="hw_percent" style="display: none">
+                <label for="homework_percent">Homework completion (%)</label>
+                <input type="number" name="homework_percent" min="0" max="100">
+            </div>
+            <label class="smaller-option"><input type="checkbox" id="hw_toggle" onchange="toggleHWMode()"> Enter completion in percent instead</label>
+
+        </fieldset>
+
+
+        <label for="hours_studied">Total hours studied:</label>
+        <input type="number" name="hours_studied" min="0" max="100"><br><br>
+
+        <label for="course_complexity">Course complexity: <span id="complexity_display">5</span></label><br>
+        <input type="range" id="course_complexity" name="course_complexity" min="1" max="10" value="5" oninput="complexity_display.innerText = this.value"><br>
+        <small>* Based on your personal impression of the course, not official difficulty ratings.</small><br><br>
+
+        <button type="submit">Predict</button>
+    </form>
+
+    <div class="result-box" id="resultBox" style="display:none">
+        <h2 id="resultText">{{ prediction_text or '' }}</h2>
+        <div class="result-actions">
+            <button onclick="location.href='/'">Try Again</button>
+            <button onclick="copyResult()">Copy Result</button>
+
+        </div>
+    </div>
+
+    <script>
+    function toggleLectureMode() {
+        const checked = document.getElementById("attended_toggle").checked;
+        document.getElementById("lecture_raw").style.display = checked ? 'none' : 'block';
+        document.getElementById("lecture_percent").style.display = checked ? 'block' : 'none';
+    }
+
+    function toggleHWMode() {
+        const checked = document.getElementById("hw_toggle").checked;
+        document.getElementById("hw_raw").style.display = checked ? 'none' : 'block';
+        document.getElementById("hw_percent").style.display = checked ? 'block' : 'none';
+    }
+
+    function copyResult() {
+        const text = document.getElementById("resultText").innerText;
+        navigator.clipboard.writeText(text).catch(err => console.error(err));
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const resultBox = document.getElementById("resultBox");
+        const prediction = "{{ prediction_text }}";
+
+        if (prediction && prediction.trim() !== "") {
+            const form = document.querySelector("form");
+            const heading = document.querySelector("h1");
+
+            form.classList.add("fade-out");
+            heading.classList.add("fade-out");
+
+            setTimeout(() => {
+                form.style.display = "none";
+                resultBox.style.display = "block";
+
+                heading.classList.remove("fade-out");
+
+                heading.classList.add("fade-in");
+                resultBox.classList.add("fade-in");
+            }, 800);
+        }
+        if (!prediction || prediction.trim() === "") {
+            document.querySelector("form").classList.add("fade-in");
+            document.querySelector("h1").classList.add("fade-in");
+        }
+    });
+</script>
+
+</body>
+</html>
