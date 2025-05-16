@@ -1,5 +1,7 @@
 # Exam Outcome Predictor
 
+[![Live App](https://img.shields.io/badge/🔗%20LIVE-DEMO-brightgreen?style=for-the-badge)]([https://your-app.onrender.com](https://exam-predictor-z4cw.onrender.com))
+
 This project is a web application designed to predict how well a student might perform on an exam based on personal study habits, mental health indicators, and subjective experiences. Built using Python and Flask, it shows a practical use-case of machine learning models in everyday tools.
 ![index](model/results/exam.png)
 
