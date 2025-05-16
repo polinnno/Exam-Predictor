@@ -31,6 +31,6 @@ The model was trained on synthetically generated data. Data was split into train
 - **Mean Absolute Error (MAE)**: 4.18 (predictions typically deviate by approximately 4 points).
 - **R² score**: 0.82 (about 82% of variability in exam scores is explained by the model).
 <div style="display: flex; gap: 20px;">
-  <img src="images/actual_vs_predicted.png" alt="Scatter Plot: Actual vs. Predicted Scores" width="48%">
-  <img src="images/error_distribution.png" alt="Histogram: Distribution of Prediction Errors" width="48%">
+  <img src="model/results/scatter_real_vs_predicted.png" alt="Scatter Plot: Actual vs. Predicted Scores" width="48%">
+  <img src="model/results/error_distribution.png" alt="Histogram: Distribution of Prediction Errors" width="48%">
 </div>
